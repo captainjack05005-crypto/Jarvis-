@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-slate-950 text-gray-100 font-sans antialiased;
+  font-feature-settings: 'rlig' 1, 'calt' 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cyan-500 rounded-full hover:bg-cyan-400;
+}
+
+/* HUD-style animations */
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.8);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes border-glow {
+  0%, 100% {
+    border-color: rgba(34, 211, 238, 0.3);
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.2);
+  }
+  50% {
+    border-color: rgba(34, 211, 238, 0.6);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+  }
+}
+
+.glow-text {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.scan-line {
+  animation: scan-line 8s linear infinite;
+}
+
+.border-glow {
+  animation: border-glow 2s ease-in-out infinite;
+}
+
+/* HUD panels */
+.hud-panel {
+  @apply bg-gradient-to-br from-slate-900 to-slate-950 border border-cyan-500/30 rounded-lg;
+  backdrop-filter: blur(10px);
+}
+
+.hud-panel:hover {
+  @apply border-cyan-400/50;
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+}
+
+/* Glass morphism */
+.glass {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-lg;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent;
+}
+
+/* Button styles */
+.btn-glow {
+  @apply relative px-4 py-2 font-semibold text-white transition-all duration-300;
+  @apply bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg;
+  @apply hover:from-cyan-400 hover:to-blue-500 hover:shadow-lg;
+  @apply active:scale-95;
+}
+
+.btn-outline {
+  @apply relative px-4 py-2 font-semibold text-cyan-400 transition-all duration-300;
+  @apply border border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10;
+  @apply active:scale-95;
+}
+
+/* Input styles */
+.input-hud {
+  @apply w-full px-4 py-2 bg-slate-900/50 border border-cyan-500/30 rounded-lg;
+  @apply text-gray-100 placeholder-gray-500 transition-all duration-300;
+  @apply focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/30;
+}
+
+/* Chat message animation */
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter {
+  animation: slide-in-up 0.3s ease-out;
+}
